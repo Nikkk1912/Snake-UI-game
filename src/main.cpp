@@ -7,6 +7,7 @@ using namespace std;
 
 Color dark_blue = {31, 29, 52, 255};
 Color light_yellow = {248, 232, 199, 255};
+Color light_green = {160, 212, 171, 255};
 
 int cellSize = 30;
 int cellCount = 25;
@@ -113,7 +114,15 @@ class Snake{
 
         void Draw()
         {
-            for(unsigned i =0; i <body.size(); i++)
+            for(unsigned i =0; i <1; i++)
+            {
+                float x = body[i].x;
+                float y = body[i].y;
+                Rectangle segment = Rectangle{offset + x*cellSize, offset+ y*cellSize, (float)cellSize, (float)cellSize};
+                DrawRectangleRounded(segment, 0.5 , 6, light_green);
+            }
+
+            for(unsigned i =1; i <body.size(); i++)
             {
                 float x = body[i].x;
                 float y = body[i].y;
@@ -260,7 +269,7 @@ int main(){
     {
         BeginDrawing();
 
-        if(EventTrigger(0.17))
+        if(EventTrigger(0.15))
         {
             game.Update();
         }
